@@ -2,15 +2,15 @@
 
 
 
-class Articols extends Category
-{
+class Articols {
     public $title;
     public $img;
     public $price;
+    public $category;
 
-    public function __construct(string $_name, string $_icon, string $_title, string $_img, float $_price)
+    public function __construct(Category $_category ,string $_title, string $_img, float $_price)
     {
-        parent::__construct($_name, $_icon);
+        $this->category= $_category;
         $this->title = $_title;
         $this->img = $_img;
         $this->price = $_price;
