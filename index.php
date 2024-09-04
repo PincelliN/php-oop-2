@@ -32,18 +32,25 @@ var_dump($db_shop);
         <div class="row">
             <div class="col-6">
 
-
+                <h3>Cane</h3>
                 <?php foreach($db_shop as $element):?>
+                <?php if ($element->category->name == 'cane'):?>
                 <div class="card" style="width: 18rem;">
                     <img src="<?php echo $element->img ?>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $element->title ?></h5>
                         <ul>
                             <li>Categoria:<?php echo $element->category->name?>
-
                             </li>
                             <li>Prezzo:<?php echo $element->price ?>$</li>
-                            <li>Tipologia:<?php echo get_class($element) ?>
+                            <li>Tipologia:<?php if (get_class($element)=='Kennels') {
+                                echo 'Cuccie';
+                            }elseif(get_class($element)=='Games') {
+                                 echo 'Giochi';
+                            } else {
+                                echo 'Cibo';
+                            } 
+                             ?>
                             </li>
                             <?php if (isset($element->color)):?>
                             <?php echo "<li>Colore:$element->color</li>"?>
@@ -59,11 +66,49 @@ var_dump($db_shop);
                         </ul>
                     </div>
                 </div>
+                <?endif?>
                 <?php endforeach;?>
 
 
             </div>
-            <div class="col-6"></div>
+            <div class="col-6">
+                <h3>Gatto</h3>
+                <?php foreach($db_shop as $element):?>
+                <?php if ($element->category->name == 'gatto'):?>
+                <div class="card" style="width: 18rem;">
+                    <img src="<?php echo $element->img ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $element->title ?></h5>
+                        <ul>
+                            <li>Categoria:<?php echo $element->category->name?>
+
+                            </li>
+                            <li>Prezzo:<?php echo $element->price ?>$</li>
+                            <li>Tipologia:<?php if (get_class($element)=='Kennels') {
+                                echo 'Cuccie';
+                            }elseif(get_class($element)=='Games') {
+                                 echo 'Giochi';
+                            } else {
+                                echo 'Cibo';
+                            }  ?>
+                            </li>
+                            <?php if (isset($element->color)):?>
+                            <?php echo "<li>Colore:$element->color</li>"?>
+                            <?php echo "<li>Stagione:$element->season</li>"?>
+                            <?php elseif(isset($element->measure)):?>
+                            <?php echo "<li>Taglia:$element->measure</li>"?>
+                            <?php echo "<li>Materiale:$element->material</li>"?>
+                            <?php elseif(isset($element->kcal)):?>
+                            <?php echo "<li>Kcal:$element->kcal x 100g</li>"?>
+                            <?php echo "<li>Peso:$element->weight Kg</li>"?>
+                            <?php echo "<li>Consigliato per:$element->tipe</li>"?>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                </div>
+                <?endif?>
+                <?php endforeach;?>
+            </div>
         </div>
     </div>
 
