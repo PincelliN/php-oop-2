@@ -1,5 +1,5 @@
 <?php
-class Kennels extends Articols{
+class Kennel extends Articol{
 
    
     public $color;

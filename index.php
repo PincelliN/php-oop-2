@@ -30,32 +30,31 @@ require_once __DIR__.'/Model/Games.php';   // Modello giochi
     <div class="container">
         <div class="row">
             <!-- Colonna per gli articoli della categoria 'cane' -->
-            <div class="col-6">
+            <div class="col-6 text-center">
                 <h3>Cane</h3>
                 <?php foreach($db_shop as $element):?>
                 <!-- Verifica se l'elemento appartiene alla categoria 'cane' -->
                 <?php if ($element->category->name == 'cane'):?>
-                <div class="card" style="width: 18rem;">
+                <div class="card mx-auto my-2 " style="width: 18rem;">
                     <img src="<?php echo $element->img ?>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $element->title ?></h5>
                         <ul>
-                            <!-- Categoria dell'elemento -->
-                            <li>Categoria:<?php echo $element->category->name?></li>
-                            <!-- Prezzo dell'elemento -->
-                            <li>Prezzo:<?php echo $element->price ?>$</li>
                             <!-- Tipologia dell'elemento: Cuccia, Giochi o Cibo -->
                             <li>Tipologia:
                                 <?php 
-                                        if (get_class($element) == 'Kennels') {
+                                        if (get_class($element) == 'Kennel') {
                                             echo 'Cuccie';
-                                        } elseif(get_class($element) == 'Games') {
+                                        } elseif(get_class($element) == 'Game') {
                                             echo 'Giochi';
                                         } else {
                                             echo 'Cibo';
                                         }
                                         ?>
                             </li>
+                            <!-- Prezzo dell'elemento -->
+                            <li>Prezzo:<?php echo $element->price ?>$</li>
+
 
                             <!-- Attributi specifici in base alla tipologia dell'elemento -->
                             <!-- Se è un elemento che ha colore e stagione -->
@@ -82,28 +81,28 @@ require_once __DIR__.'/Model/Games.php';   // Modello giochi
             </div>
 
             <!-- Colonna per gli articoli della categoria 'gatto' -->
-            <div class="col-6">
+            <div class="col-6 text-center">
                 <h3>Gatto</h3>
                 <?php foreach($db_shop as $element):?>
                 <?php if ($element->category->name == 'gatto'):?>
-                <div class="card" style="width: 18rem;">
+                <div class="card mx-auto my-2 " style="width: 18rem;">
                     <img src="<?php echo $element->img ?>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $element->title ?></h5>
                         <ul>
-                            <li>Categoria:<?php echo $element->category->name?></li>
-                            <li>Prezzo:<?php echo $element->price ?>$</li>
                             <li>Tipologia:
                                 <?php 
-                                        if (get_class($element) == 'Kennels') {
+                                        if (get_class($element) == 'Kennel') {
                                             echo 'Cuccie';
-                                        } elseif(get_class($element) == 'Games') {
+                                        } elseif(get_class($element) == 'Game') {
                                             echo 'Giochi';
                                         } else {
                                             echo 'Cibo';
                                         }
                                         ?>
                             </li>
+                            <li>Prezzo:<?php echo $element->price ?>$</li>
+
 
                             <?php if (isset($element->color)):?>
                             <?php echo "<li>Colore:$element->color</li>"?>

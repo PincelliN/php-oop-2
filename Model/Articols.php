@@ -2,7 +2,7 @@
 
 
 
-class Articols {
+class Articol {
     public $title;
     public $img;
     public $price;

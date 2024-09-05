@@ -1,6 +1,6 @@
 <?php
 
-class Foods extends Articols{
+class Food extends Articol{
 
     public $kcal;
     public $weight;

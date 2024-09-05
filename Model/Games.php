@@ -1,6 +1,6 @@
 <?php
 
-class Games extends Articols{
+class Game extends Articol{
     public $measure;
     public $material;
     
