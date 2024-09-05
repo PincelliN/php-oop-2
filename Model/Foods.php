@@ -2,18 +2,40 @@
 
 class Food extends Articol{
 
-    public $kcal;
-    public $weight;
-    public $tipe;
+    private $kcal;
+    private $weight;
+    private $tipe;
 
     public function __construct(Category $_category, string $_title, string $_img, float $_price,float $_kcal,float $_weight,string $_tipe )
     {
         
         parent::__construct($_category, $_title, $_img,$_price);
-        $this->kcal=$_kcal;
-        $this->weight=$_weight;
-        $this->tipe=$_tipe;
+        $this->setKcal($_kcal);
+        $this->setWeight($_weight);
+        $this->setTipe($_tipe);
 
+    }
+
+    public function getkcal(){
+        return $this->kcal;
+    }
+
+    public function getWeight(){
+        return $this->weight;
+    }
+
+    public function getTipe(){
+        return $this->tipe;
+    }
+    
+    public function setKcal($_kcal){
+        return $this->kcal=$_kcal;
+    }
+    public function setWeight($_weight){
+        $this->weight=$_weight;
+    }
+    public function setTipe($_tipe){
+        $this->tipe=$_tipe;
     }
 
 }

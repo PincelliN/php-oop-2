@@ -1,10 +1,10 @@
 <?php
 
 // Importazione dei file necessari contenenti il database e le classi del modello.
-require_once __DIR__.'/data/db_shop.php'; // Database shop
-require_once __DIR__.'/Model/Foods.php';  // Modello cibo
-require_once __DIR__.'/Model/Kennels.php'; // Modello cuccia
-require_once __DIR__.'/Model/Games.php';   // Modello giochi
+require_once __DIR__ . '/data/db_shop.php'; // Database shop
+require_once __DIR__ . '/Model/Foods.php';  // Modello cibo
+require_once __DIR__ . '/Model/Kennels.php'; // Modello cuccia
+require_once __DIR__ . '/Model/Games.php';   // Modello giochi
 
 //var_dump($db_shop);
 
@@ -32,99 +32,113 @@ require_once __DIR__.'/Model/Games.php';   // Modello giochi
             <!-- Colonna per gli articoli della categoria 'cane' -->
             <div class="col-6 text-center">
                 <h3>Cane</h3>
-                <?php foreach($db_shop as $element):?>
+                <?php foreach ($db_shop as $element):
+                
+                 ?>
                 <!-- Verifica se l'elemento appartiene alla categoria 'cane' -->
-                <?php if ($element->category->name == 'cane'):?>
+                <?php if ($element->getCategory()->getName() == 'cane'): ?>
                 <div class="card mx-auto my-2 " style="width: 18rem;">
-                    <img src="<?php echo $element->img ?>" class="card-img-top" alt="...">
+                    <img src="<?php echo $element->getImg() ?>" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $element->title ?></h5>
+                        <h5 class="card-title"><?php echo $element->getTitle() ?></h5>
                         <ul>
                             <!-- Tipologia dell'elemento: Cuccia, Giochi o Cibo -->
                             <li>Tipologia:
-                                <?php 
+                                <?php
                                         if (get_class($element) == 'Kennel') {
                                             echo 'Cuccie';
-                                        } elseif(get_class($element) == 'Game') {
+                                        } elseif (get_class($element) == 'Game') {
                                             echo 'Giochi';
                                         } else {
                                             echo 'Cibo';
                                         }
                                         ?>
+                                <i class="<?php echo $element->getCategory()->getIcon() ?>"></i>
+
                             </li>
                             <!-- Prezzo dell'elemento -->
-                            <li>Prezzo:<?php echo $element->price ?>$</li>
+                            <li>Prezzo:<?php echo $element->getPrice() ?>$</li>
 
 
                             <!-- Attributi specifici in base alla tipologia dell'elemento -->
                             <!-- Se è un elemento che ha colore e stagione -->
-                            <?php if (isset($element->color)):?>
-                            <?php echo "<li>Colore:$element->color</li>"?>
-                            <?php echo "<li>Stagione:$element->season</li>"?>
+                            <?php if (get_class($element) == 'Kennel'): ?>
+                            <?php echo "<li>Colore:" . $element->getColor() . "</li>" ?>
+                            <?php echo "<li>Stagione:" . $element->getSeason() . "</li>" ?>
 
                             <!-- Se è un elemento con taglia e materiale (come cuccia) -->
-                            <?php elseif(isset($element->measure)):?>
-                            <?php echo "<li>Taglia:$element->measure</li>"?>
-                            <?php echo "<li>Materiale:$element->material</li>"?>
+                            <?php elseif (get_class($element) == 'Game'): ?>
+                            <?php echo "<li>Taglia:" . $element->getMeasure() . "</li>" ?>
+                            <?php echo "<li>Materiale:" . $element->getMaterial() . "</li>" ?>
 
                             <!-- Se è un cibo, mostra Kcal, peso e tipo di animale -->
-                            <?php elseif(isset($element->kcal)):?>
-                            <?php echo "<li>Kcal:$element->kcal x 100g</li>"?>
-                            <?php echo "<li>Peso:$element->weight Kg</li>"?>
-                            <?php echo "<li>Consigliato per:$element->tipe</li>"?>
+                            <?php elseif (get_class($element) == 'Food'): ?>
+                            <?php echo "<li>Kcal:" . $element->getKcal() . "x 100g</li>" ?>
+                            <?php echo "<li>Peso:" . $element->getWeight() . " Kg</li>" ?>
+                            <?php echo "<li>Consigliato per:" . $element->getTipe() . "</li>" ?>
                             <?php endif; ?>
                         </ul>
                     </div>
                 </div>
-                <?php endif;?>
-                <?php endforeach;?>
+                <?php endif; ?>
+                <?php endforeach; ?>
             </div>
 
             <!-- Colonna per gli articoli della categoria 'gatto' -->
             <div class="col-6 text-center">
-                <h3>Gatto</h3>
-                <?php foreach($db_shop as $element):?>
-                <?php if ($element->category->name == 'gatto'):?>
+                <h3>Cane</h3>
+                <?php foreach ($db_shop as $element):
+                
+                 ?>
+                <!-- Verifica se l'elemento appartiene alla categoria 'cane' -->
+                <?php if ($element->getCategory()->getName() == 'gatto'): ?>
                 <div class="card mx-auto my-2 " style="width: 18rem;">
-                    <img src="<?php echo $element->img ?>" class="card-img-top" alt="...">
+                    <img src="<?php echo $element->getImg() ?>" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $element->title ?></h5>
+                        <h5 class="card-title"><?php echo $element->getTitle() ?></h5>
                         <ul>
+                            <!-- Tipologia dell'elemento: Cuccia, Giochi o Cibo -->
                             <li>Tipologia:
-                                <?php 
+                                <?php
                                         if (get_class($element) == 'Kennel') {
                                             echo 'Cuccie';
-                                        } elseif(get_class($element) == 'Game') {
+                                        } elseif (get_class($element) == 'Game') {
                                             echo 'Giochi';
                                         } else {
                                             echo 'Cibo';
                                         }
                                         ?>
+                                <i class="<?php echo $element->getCategory()->getIcon() ?>"></i>
+
                             </li>
-                            <li>Prezzo:<?php echo $element->price ?>$</li>
+                            <!-- Prezzo dell'elemento -->
+                            <li>Prezzo:<?php echo $element->getPrice() ?>$</li>
 
 
-                            <?php if (isset($element->color)):?>
-                            <?php echo "<li>Colore:$element->color</li>"?>
-                            <?php echo "<li>Stagione:$element->season</li>"?>
+                            <!-- Attributi specifici in base alla tipologia dell'elemento -->
+                            <!-- Se è un elemento che ha colore e stagione -->
+                            <?php if (get_class($element) == 'Kennel'): ?>
+                            <?php echo "<li>Colore:" . $element->getColor() . "</li>" ?>
+                            <?php echo "<li>Stagione:" . $element->getSeason() . "</li>" ?>
 
-                            <?php elseif(isset($element->measure)):?>
-                            <?php echo "<li>Taglia:$element->measure</li>"?>
-                            <?php echo "<li>Materiale:$element->material</li>"?>
+                            <!-- Se è un elemento con taglia e materiale (come cuccia) -->
+                            <?php elseif (get_class($element) == 'Game'): ?>
+                            <?php echo "<li>Taglia:" . $element->getMeasure() . "</li>" ?>
+                            <?php echo "<li>Materiale:" . $element->getMaterial() . "</li>" ?>
 
-                            <?php elseif(isset($element->kcal)):?>
-                            <?php echo "<li>Kcal:$element->kcal x 100g</li>"?>
-                            <?php echo "<li>Peso:$element->weight Kg</li>"?>
-                            <?php echo "<li>Consigliato per:$element->tipe</li>"?>
+                            <!-- Se è un cibo, mostra Kcal, peso e tipo di animale -->
+                            <?php elseif (get_class($element) == 'Food'): ?>
+                            <?php echo "<li>Kcal:" . $element->getKcal() . "x 100g</li>" ?>
+                            <?php echo "<li>Peso:" . $element->getWeight() . " Kg</li>" ?>
+                            <?php echo "<li>Consigliato per:" . $element->getTipe() . "</li>" ?>
                             <?php endif; ?>
                         </ul>
                     </div>
                 </div>
-                <?php endif;?>
-                <?php endforeach;?>
+                <?php endif; ?>
+                <?php endforeach; ?>
             </div>
         </div>
-    </div>
 
 </body>
 

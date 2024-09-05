@@ -3,16 +3,52 @@
 
 
 class Articol {
-    public $title;
-    public $img;
-    public $price;
-    public $category;
+    protected $title;
+    protected $img;
+    protected $price;
+    protected $category;
 
     public function __construct(Category $_category ,string $_title, string $_img, float $_price)
     {
-        $this->category= $_category;
-        $this->title = $_title;
-        $this->img = $_img;
-        $this->price = $_price;
+        $this->setCategoty($_category);
+        $this->setTitle($_title);
+        $this->setimg($_img);
+        $this->setPrice($_price);
+    }
+
+    public function getTitle(){
+        return $this->title;
+    }
+
+    public function getImg(){
+        return $this->img;
+    }
+
+    public function getPrice(){
+        return $this->price;
+    }
+     
+    public function getCategory(){
+        return $this->category;
+    }
+
+
+
+
+
+    public function setTitle($_title){
+        $this->title=$_title;
+    }
+
+    public function setimg($_img){
+        $this->img=$_img;
+    }
+
+    public function setPrice($_price){
+        $this->price=$_price;
+    }
+
+    public function setCategoty($_category){
+        $this->category=$_category;
     }
 }
