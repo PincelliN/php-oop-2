@@ -32,7 +32,11 @@ class Food extends Articol{
         return $this->kcal=$_kcal;
     }
     public function setWeight($_weight){
-        $this->weight=$_weight;
+        if($_weight != 3.0 && $_weight != 5.0 ){
+             throw new Exception('Il peso non è un formato standard');
+        }
+        
+      $this->weight=$_weight; 
     }
     public function setTipe($_tipe){
         $this->tipe=$_tipe;

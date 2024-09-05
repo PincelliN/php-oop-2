@@ -31,6 +31,9 @@ class Category
     }
 
     public function setIcon($_icon){
+        if($_icon !='fa-solid fa-dog' && $_icon !='fa-solid fa-cat' ){
+            throw new Exception("L'icona non è supportata");
+        }
         $this->icon=$_icon;
     }
 }

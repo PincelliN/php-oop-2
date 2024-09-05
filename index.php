@@ -5,8 +5,35 @@ require_once __DIR__ . '/data/db_shop.php'; // Database shop
 require_once __DIR__ . '/Model/Foods.php';  // Modello cibo
 require_once __DIR__ . '/Model/Kennels.php'; // Modello cuccia
 require_once __DIR__ . '/Model/Games.php';   // Modello giochi
-
+require_once __DIR__.'/Model/Articols.php';
+require_once __DIR__.'/Model/Category.php';
 //var_dump($db_shop);
+
+
+
+try{
+$MyTry = new Food($dog_categoty,"Amico Cane","img\pappacane.jpg", 110,350.0,5.0,"adulto");
+echo $MyTry->getTitle();
+}catch(Exception $e)
+{
+ echo "Errore :". $e->getMessage()."<br>";
+};
+try{
+$MyTry = new Food($dog_categoty,"Amico Cane","img\pappacane.jpg", 10,350.0,15.0,"adulto");
+echo $MyTry->getTitle();
+}catch(Exception $e)
+{
+ echo "Errore :". $e->getMessage()."<br>";
+};
+try{
+$MyTryIcon = new Category("Struzzo","fa-solid fa-struzzo");;
+echo $MyTryIcon->getName();
+}catch(Exception $e)
+{
+ echo "Errore :". $e->getMessage()."<br>";
+};
+
+
 
 ?>
 
@@ -33,11 +60,11 @@ require_once __DIR__ . '/Model/Games.php';   // Modello giochi
             <div class="col-6 text-center">
                 <h3>Cane</h3>
                 <?php foreach ($db_shop as $element):
-                
-                 ?>
+
+                ?>
                 <!-- Verifica se l'elemento appartiene alla categoria 'cane' -->
                 <?php if ($element->getCategory()->getName() == 'cane'): ?>
-                <div class="card mx-auto my-2 " style="width: 18rem;">
+                <div class="card mx-auto my-2" style="width: 18rem;">
                     <img src="<?php echo $element->getImg() ?>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $element->getTitle() ?></h5>
@@ -73,7 +100,7 @@ require_once __DIR__ . '/Model/Games.php';   // Modello giochi
 
                             <!-- Se è un cibo, mostra Kcal, peso e tipo di animale -->
                             <?php elseif (get_class($element) == 'Food'): ?>
-                            <?php echo "<li>Kcal:" . $element->getKcal() . "x 100g</li>" ?>
+                            <?php echo "<li>Kcal:" . $element->getKcal() . " " . "x 100g</li>" ?>
                             <?php echo "<li>Peso:" . $element->getWeight() . " Kg</li>" ?>
                             <?php echo "<li>Consigliato per:" . $element->getTipe() . "</li>" ?>
                             <?php endif; ?>
@@ -88,8 +115,8 @@ require_once __DIR__ . '/Model/Games.php';   // Modello giochi
             <div class="col-6 text-center">
                 <h3>Cane</h3>
                 <?php foreach ($db_shop as $element):
-                
-                 ?>
+
+                ?>
                 <!-- Verifica se l'elemento appartiene alla categoria 'cane' -->
                 <?php if ($element->getCategory()->getName() == 'gatto'): ?>
                 <div class="card mx-auto my-2 " style="width: 18rem;">
@@ -128,7 +155,7 @@ require_once __DIR__ . '/Model/Games.php';   // Modello giochi
 
                             <!-- Se è un cibo, mostra Kcal, peso e tipo di animale -->
                             <?php elseif (get_class($element) == 'Food'): ?>
-                            <?php echo "<li>Kcal:" . $element->getKcal() . "x 100g</li>" ?>
+                            <?php echo "<li>Kcal:" . $element->getKcal() . " " . "x 100g</li>" ?>
                             <?php echo "<li>Peso:" . $element->getWeight() . " Kg</li>" ?>
                             <?php echo "<li>Consigliato per:" . $element->getTipe() . "</li>" ?>
                             <?php endif; ?>

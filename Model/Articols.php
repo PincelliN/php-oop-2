@@ -45,6 +45,11 @@ class Articol {
     }
 
     public function setPrice($_price){
+        if($_price > 100)
+        {
+            throw new Exception('Sei sicuro di non star spendendo un pò troppo');
+        }
+        
         $this->price=$_price;
     }
 

@@ -8,7 +8,7 @@ class Game extends Articol{
     public function __construct(Category $_category, string $_title, string $_img, float $_price,string $_measure,string $_material )
     {  
         parent::__construct($_category, $_title, $_img,$_price);
-        $this->setMaterial($_measure);
+        $this->setMeasure($_measure);
         $this->setMaterial($_material);
     }
 
@@ -16,8 +16,8 @@ class Game extends Articol{
         return $this->measure;
     }
 
-    public function sertMeasure($_measure){
-        $this->material=$_measure;
+    public function setMeasure($_measure){
+        $this->measure=$_measure;
     }
 
     
